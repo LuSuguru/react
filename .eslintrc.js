@@ -43,20 +43,20 @@ module.exports = {
     'eqeqeq': [ERROR, 'allow-null'],
     'indent': OFF,
     'jsx-quotes': [ERROR, 'prefer-double'],
-    'keyword-spacing': [ERROR, {after: true, before: true}],
+    'keyword-spacing': [ERROR, { after: true, before: true }],
     'no-bitwise': OFF,
     'no-inner-declarations': [ERROR, 'functions'],
     'no-multi-spaces': ERROR,
     'no-restricted-syntax': [ERROR, 'WithStatement'],
     'no-shadow': ERROR,
     'no-unused-expressions': ERROR,
-    'no-unused-vars': [ERROR, {args: 'none'}],
-    'no-use-before-define': [ERROR, {functions: false, variables: false}],
+    'no-unused-vars': [ERROR, { args: 'none' }],
+    'no-use-before-define': [ERROR, { functions: false, variables: false }],
     'no-useless-concat': OFF,
-    'quotes': [ERROR, 'single', {avoidEscape: true, allowTemplateLiterals: true }],
+    'quotes': [ERROR, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'space-before-blocks': ERROR,
     'space-before-function-paren': OFF,
-    'valid-typeof': [ERROR, {requireStringLiterals: true}],
+    'valid-typeof': [ERROR, { requireStringLiterals: true }],
 
     // We apply these settings to files that should run on Node.
     // They can't use JSX or ES6 modules, and must be in strict mode.
@@ -78,7 +78,7 @@ module.exports = {
     'react/react-in-jsx-scope': ERROR,
     'react/self-closing-comp': ERROR,
     // We don't care to do this
-    'react/jsx-wrap-multilines': [ERROR, {declaration: false, assignment: false}],
+    'react/jsx-wrap-multilines': [ERROR, { declaration: false, assignment: false }],
 
     // Prevent for...of loops because they require a Symbol polyfill.
     // You can disable this rule for code that isn't shipped (e.g. build scripts and tests).
@@ -89,6 +89,7 @@ module.exports = {
     'react-internal/no-primitive-constructors': ERROR,
     'react-internal/no-to-warn-dev-within-to-throw': ERROR,
     'react-internal/warning-and-invariant-args': ERROR,
+    'no-debugger': 0
   },
 
   overrides: [

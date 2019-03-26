@@ -7,13 +7,13 @@
  * @flow
  */
 
-import type {ReactElement} from 'shared/ReactElementType';
-import type {ReactPortal} from 'shared/ReactTypes';
-import type {Fiber} from './ReactFiber';
-import type {ExpirationTime} from './ReactFiberExpirationTime';
+import type { ReactElement } from 'shared/ReactElementType';
+import type { ReactPortal } from 'shared/ReactTypes';
+import type { Fiber } from './ReactFiber';
+import type { ExpirationTime } from './ReactFiberExpirationTime';
 
 import getComponentName from 'shared/getComponentName';
-import {Placement, Deletion} from 'shared/ReactSideEffectTags';
+import { Placement, Deletion } from 'shared/ReactSideEffectTags';
 import {
   getIteratorFn,
   REACT_ELEMENT_TYPE,
@@ -38,19 +38,19 @@ import {
   createFiberFromText,
   createFiberFromPortal,
 } from './ReactFiber';
-import {emptyRefsObject} from './ReactFiberClassComponent';
+import { emptyRefsObject } from './ReactFiberClassComponent';
 import {
   getCurrentFiberStackInDev,
   getStackByFiberInDevAndProd,
 } from './ReactCurrentFiber';
-import {StrictMode} from './ReactTypeOfMode';
+import { StrictMode } from './ReactTypeOfMode';
 
 let didWarnAboutMaps;
 let didWarnAboutGenerators;
 let didWarnAboutStringRefInStrictMode;
 let ownerHasKeyUseWarning;
 let ownerHasFunctionTypeWarning;
-let warnForMissingKey = (child: mixed) => {};
+let warnForMissingKey = (child: mixed) => { };
 
 if (__DEV__) {
   didWarnAboutMaps = false;
@@ -75,7 +75,7 @@ if (__DEV__) {
     invariant(
       typeof child._store === 'object',
       'React Component in warnForMissingKey should have a _store. ' +
-        'This error is likely caused by a bug in React. Please file an issue.',
+      'This error is likely caused by a bug in React. Please file an issue.',
     );
     child._store.validated = true;
 
@@ -92,8 +92,8 @@ if (__DEV__) {
     warning(
       false,
       'Each child in a list should have a unique ' +
-        '"key" prop. See https://fb.me/react-warning-keys for ' +
-        'more information.',
+      '"key" prop. See https://fb.me/react-warning-keys for ' +
+      'more information.',
     );
   };
 }
@@ -118,11 +118,11 @@ function coerceRef(
           warningWithoutStack(
             false,
             'A string ref, "%s", has been found within a strict mode tree. ' +
-              'String refs are a source of potential bugs and should be avoided. ' +
-              'We recommend using createRef() instead.' +
-              '\n%s' +
-              '\n\nLearn more about using refs safely here:' +
-              '\nhttps://fb.me/react-strict-mode-string-ref',
+            'String refs are a source of potential bugs and should be avoided. ' +
+            'We recommend using createRef() instead.' +
+            '\n%s' +
+            '\n\nLearn more about using refs safely here:' +
+            '\nhttps://fb.me/react-strict-mode-string-ref',
             mixedRef,
             getStackByFiberInDevAndProd(returnFiber),
           );
@@ -139,14 +139,14 @@ function coerceRef(
         invariant(
           ownerFiber.tag === ClassComponent,
           'Function components cannot have refs. ' +
-            'Did you mean to use React.forwardRef()?',
+          'Did you mean to use React.forwardRef()?',
         );
         inst = ownerFiber.stateNode;
       }
       invariant(
         inst,
         'Missing owner for string ref %s. This error is likely caused by a ' +
-          'bug in React. Please file an issue.',
+        'bug in React. Please file an issue.',
         mixedRef,
       );
       const stringRef = '' + mixedRef;
@@ -159,7 +159,7 @@ function coerceRef(
       ) {
         return current.ref;
       }
-      const ref = function(value) {
+      const ref = function (value) {
         let refs = inst.refs;
         if (refs === emptyRefsObject) {
           // This is a lazy pooled frozen object, so we need to initialize.
@@ -181,11 +181,11 @@ function coerceRef(
       invariant(
         element._owner,
         'Element ref was specified as a string (%s) but no owner was set. This could happen for one of' +
-          ' the following reasons:\n' +
-          '1. You may be adding a ref to a function component\n' +
-          "2. You may be adding a ref to a component that was not created inside a component's render method\n" +
-          '3. You have multiple copies of React loaded\n' +
-          'See https://fb.me/react-refs-must-have-owner for more information.',
+        ' the following reasons:\n' +
+        '1. You may be adding a ref to a function component\n' +
+        "2. You may be adding a ref to a component that was not created inside a component's render method\n" +
+        '3. You have multiple copies of React loaded\n' +
+        'See https://fb.me/react-refs-must-have-owner for more information.',
         mixedRef,
       );
     }
@@ -228,8 +228,8 @@ function warnOnFunctionType() {
   warning(
     false,
     'Functions are not valid as a React child. This may happen if ' +
-      'you return a Component instead of <Component /> from render. ' +
-      'Or maybe you meant to call this function rather than return it.',
+    'you return a Component instead of <Component /> from render. ' +
+    'Or maybe you meant to call this function rather than return it.',
   );
 }
 
@@ -518,7 +518,7 @@ function ChildReconciler(shouldTrackSideEffects) {
     return null;
   }
 
-  function updateSlot(
+  function ooupdateSlot(
     returnFiber: Fiber,
     oldFiber: Fiber | null,
     newChild: any,
@@ -660,18 +660,20 @@ function ChildReconciler(shouldTrackSideEffects) {
             expirationTime,
           );
         }
+
+          if (isArray(newChild) || getIteratorFn(newChild)) {
+            const matchedFiber = existingChildren.get(newIdx) || null;
+            return updateFragment(
+              returnFiber,
+              matchedFiber,
+              newChild,
+              expirationTime,
+              null,
+            );
+          }
       }
 
-      if (isArray(newChild) || getIteratorFn(newChild)) {
-        const matchedFiber = existingChildren.get(newIdx) || null;
-        return updateFragment(
-          returnFiber,
-          matchedFiber,
-          newChild,
-          expirationTime,
-          null,
-        );
-      }
+
 
       throwOnInvalidObjectType(returnFiber, newChild);
     }
@@ -716,10 +718,10 @@ function ChildReconciler(shouldTrackSideEffects) {
           warning(
             false,
             'Encountered two children with the same key, `%s`. ' +
-              'Keys should be unique so that components maintain their identity ' +
-              'across updates. Non-unique keys may cause children to be ' +
-              'duplicated and/or omitted — the behavior is unsupported and ' +
-              'could change in a future version.',
+            'Keys should be unique so that components maintain their identity ' +
+            'across updates. Non-unique keys may cause children to be ' +
+            'duplicated and/or omitted — the behavior is unsupported and ' +
+            'could change in a future version.',
             key,
           );
           break;
@@ -902,7 +904,7 @@ function ChildReconciler(shouldTrackSideEffects) {
     invariant(
       typeof iteratorFn === 'function',
       'An object is not an iterable. This error is likely caused by a bug in ' +
-        'React. Please file an issue.',
+      'React. Please file an issue.',
     );
 
     if (__DEV__) {
@@ -916,10 +918,10 @@ function ChildReconciler(shouldTrackSideEffects) {
         warning(
           didWarnAboutGenerators,
           'Using Generators as children is unsupported and will likely yield ' +
-            'unexpected results because enumerating a generator mutates it. ' +
-            'You may convert it to an array with `Array.from()` or the ' +
-            '`[...spread]` operator before rendering. Keep in mind ' +
-            'you might need to polyfill these features for older browsers.',
+          'unexpected results because enumerating a generator mutates it. ' +
+          'You may convert it to an array with `Array.from()` or the ' +
+          '`[...spread]` operator before rendering. Keep in mind ' +
+          'you might need to polyfill these features for older browsers.',
         );
         didWarnAboutGenerators = true;
       }
@@ -929,8 +931,8 @@ function ChildReconciler(shouldTrackSideEffects) {
         warning(
           didWarnAboutMaps,
           'Using Maps as children is unsupported and will likely yield ' +
-            'unexpected results. Convert it to a sequence/iterable of keyed ' +
-            'ReactElements instead.',
+          'unexpected results. Convert it to a sequence/iterable of keyed ' +
+          'ReactElements instead.',
         );
         didWarnAboutMaps = true;
       }
@@ -1325,8 +1327,8 @@ function ChildReconciler(shouldTrackSideEffects) {
           invariant(
             false,
             '%s(...): Nothing was returned from render. This usually means a ' +
-              'return statement is missing. Or, to render nothing, ' +
-              'return null.',
+            'return statement is missing. Or, to render nothing, ' +
+            'return null.',
             Component.displayName || Component.name || 'Component',
           );
         }

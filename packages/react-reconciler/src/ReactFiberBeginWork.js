@@ -1928,6 +1928,7 @@ function beginWork(
   workInProgress: Fiber,
   renderExpirationTime: ExpirationTime,
 ): Fiber | null {
+  debugger;
   const updateExpirationTime = workInProgress.expirationTime;
 
   if (current !== null) {

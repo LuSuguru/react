@@ -2076,6 +2076,7 @@ function requestCurrentTime() {
     // We're already rendering. Return the most recently read time.
     return currentSchedulerTime;
   }
+  
   // Check if there's pending work.
   findHighestPriorityRoot();
   if (
