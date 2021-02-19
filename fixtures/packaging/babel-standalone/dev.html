@@ -6,10 +6,23 @@
   <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
   <div id="container"></div>
   <script type="text/babel">
+
+    const Ceshi =()=> (
+      <div>
+        <input
+        name="isGoing"
+        type="checkbox"
+      />
+      <select>
+        <option value="grapefruit">Grapefruit</option>
+        <option value="lime">Lime</option>
+        <option selected value="coconut">Coconut</option>
+        <option value="mango">Mango</option>
+      </select>
+        </div>
+    )
     ReactDOM.render(
-        <h1>
-          Hello World
-        </h1>,
+ <Ceshi/>,
         document.getElementById('container')
       );
     </script>
